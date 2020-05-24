@@ -1,0 +1,17 @@
+.EntityList{
+    height: 100%;
+}
+
+.EntityListBody{
+    padding: 0 !important;
+}
+
+.EntityListGroup{
+    border-radius: 0 !important;
+}
+
+.EntityLabel{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,40 @@
+.arrowPrev{
+    padding: 10px;
+    background-color: silver;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+}
+
+.arrowNext{
+    padding: 10px;
+    background-color: silver;
+    height: 100%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+.scroll-menu-arrow {
+    padding: 10px;
+    cursor: pointer;
+    height: 100%;
+}
+
+.horizontal-menu{
+    display: flex;
+    align-items: center;
+}
+
+.NewContainer{
+    padding: 10px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item-wrapper:focus{
+    outline: none;
+    transform: scale(1.05);
+}
