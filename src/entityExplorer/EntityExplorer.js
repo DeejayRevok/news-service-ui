@@ -9,6 +9,11 @@ import {EntityRelationsGraph} from "./EntityRelationsGraph";
 
 export class EntityExplorer extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.onSelectEntity = this.onSelectEntity.bind(this);
+    }
+
     state = {
         entityType: null,
         entity: null
@@ -16,14 +21,18 @@ export class EntityExplorer extends React.Component {
 
     componentDidMount() {
         const entityType = this.props.match.params.entityType;
-        this.setState({entityType: entityType});
+        this.setState({entityType: entityType, entity: null});
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const entityType = this.props.match.params.entityType;
         if (entityType !== prevProps.match.params.entityType) {
-            this.setState({entityType: entityType});
+            this.setState({entityType: entityType, entity: null});
         }
+    }
+
+    onSelectEntity(entity, entityType) {
+        this.setState({entity: entity, entityType: entityType});
     }
 
     render() {
@@ -36,7 +45,7 @@ export class EntityExplorer extends React.Component {
             <Row className="EntityExplorer-body">
                 <Col className="col-2">
                     <div style={{height: '90%'}}>
-                        <EntityList entityType={this.state.entityType}/>
+                        <EntityList entityType={this.state.entityType} onSelectEntity={this.onSelectEntity}/>
                     </div>
                 </Col>
                 <Col className="col-8">

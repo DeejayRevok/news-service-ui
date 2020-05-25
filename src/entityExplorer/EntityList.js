@@ -13,10 +13,14 @@ export class EntityList extends React.Component{
         MONEY: ['13000 $', '150.000 €', 'Un millón de dólares', '300.000 millones de pesetas']
     };
 
+    onClickEntity = entity => {
+        this.props.onSelectEntity(entity, this.props.entityType)
+    };
+
     render() {
         const entityType = this.props.entityType;
         const entityList = (entityType !== null && entityType !== undefined) ? this.entitiesByType[entityType].map(entity =>
-            <ListGroup.Item key={entity}>
+            <ListGroup.Item key={entity} action onClick={(ev) => this.onClickEntity(entity)}>
                 <div className="EntityLabel">
                     <div>{entity}</div>
                 </div>

@@ -49,20 +49,64 @@ export class EntityRelationsGraph extends React.Component {
         ]
     };
 
+    JulioGraph = {
+        nodes: [
+            {
+                id: "Julio Cortazar",
+                label: "Julio Cortazar",
+                color: entityTypes['PER']['color'],
+                value: 8,
+            },
+            {
+                id: "Finlandia",
+                label: "Finlandia",
+                color: entityTypes['GPE']['color'],
+                value: 6,
+            },
+            {
+                id: "Everest",
+                label: "Everest",
+                color: entityTypes['LOC']['color'],
+                value: 5,
+            },
+            {
+                id: "Apple",
+                label: "Apple",
+                color: entityTypes['ORG']['color'],
+                value: 4,
+            },
+            {
+                id: "30 de Febrero",
+                label: "30 de Febrero",
+                color: entityTypes['DATE']['color'],
+                value: 3,
+            }
+        ],
+        links: [
+            {source: 'Julio Cortazar', target: 'Finlandia', width: 3},
+            {source: 'Finlandia', target: 'Apple', width: 1},
+            {source: 'Finlandia', target: '30 de Febrero', width: 2.5},
+            {source: 'Finlandia', target: 'Everest', width: 2},
+            {source: 'Everest', target: 'Apple', width: 2.5},
+            {source: '30 de Febrero', target: 'Julio Cortazar', width: 1.5}
+        ]
+    };
+
     state = {
         height: null,
-        width: null
+        width: null,
     };
 
     componentDidMount() {
         const height = document.getElementById('graphContainer').clientHeight;
         const width = document.getElementById('graphContainer').clientWidth;
-        this.setState({ height: height, width: width});
+        this.setState({height: height, width: width});
     }
 
     render() {
         const entity = this.props.entity;
         const entityType = this.props.entityType;
+        const graphData = (entity !== null && entity !== undefined) ? this.JulioGraph : this.PERGraph;
         return <Card className="EntityRelationsGraph">
             <Card.Header style={{backgroundColor: 'silver'}}>
                 {(entity === null || entity === undefined) ?
@@ -73,16 +117,16 @@ export class EntityRelationsGraph extends React.Component {
             </Card.Header>
             <Card.Body>
                 <div id='graphContainer' style={{height: '100%', width: '100%'}}>
-                    { (this.state.height !==null) ?
+                    {(this.state.height !== null) ?
                         <ForceGraph2D
                             width={this.state.width}
                             height={this.state.height}
-                            graphData={this.PERGraph}
+                            graphData={graphData}
                             nodeVal='value'
                             nodeColor='color'
                             nodeLabel='label'
                             linkWidth='width'
-                        /> : <div />
+                        /> : <div/>
                     }
                 </div>
             </Card.Body>
