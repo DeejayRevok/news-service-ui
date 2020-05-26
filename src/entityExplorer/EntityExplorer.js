@@ -6,33 +6,62 @@ import "./EntityExplorer.css";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 import {EntityList} from "./EntityList";
 import {EntityRelationsGraph} from "./EntityRelationsGraph";
+import {EntityNews} from "./EntityNews";
 
 export class EntityExplorer extends React.Component {
 
     constructor(props) {
         super(props);
         this.onSelectEntity = this.onSelectEntity.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.openModal = this.openModal.bind(this);
     }
 
     state = {
         entityType: null,
-        entity: null
+        entity: null,
+        showModal: false
     };
 
     componentDidMount() {
         const entityType = this.props.match.params.entityType;
-        this.setState({entityType: entityType, entity: null});
+        this.setState((state) => {
+            state.entityType = entityType;
+            return state;
+        });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const entityType = this.props.match.params.entityType;
         if (entityType !== prevProps.match.params.entityType) {
-            this.setState({entityType: entityType, entity: null});
+            this.setState((state) => {
+                state.entityType = entityType;
+                return state;
+            });
         }
     }
 
     onSelectEntity(entity, entityType) {
-        this.setState({entity: entity, entityType: entityType});
+        this.setState((state) => {
+            state.entityType = entityType;
+            state.entity = entity;
+            return state;
+        });
+    }
+
+
+    closeModal() {
+        this.setState((state) => {
+            state.showModal = false;
+            return state;
+        });
+    }
+
+    openModal() {
+        this.setState((state) => {
+            state.showModal = true;
+            return state;
+        });
     }
 
     render() {
@@ -59,6 +88,7 @@ export class EntityExplorer extends React.Component {
                     </div>
                 </Col>
             </Row>
+            <EntityNews showModal={this.state.showModal} onCloseModal={this.closeModal}/>
         </Container>;
     }
 }
