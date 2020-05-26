@@ -6,27 +6,32 @@ import "./EntityExplorer.css";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 import {EntityList} from "./EntityList";
 import {EntityRelationsGraph} from "./EntityRelationsGraph";
-import {EntityNews} from "./EntityNews";
+import {NewsModal} from "./NewsModal";
 
 export class EntityExplorer extends React.Component {
 
     constructor(props) {
         super(props);
         this.onSelectEntity = this.onSelectEntity.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.openModal = this.openModal.bind(this);
+        this.closeEntityModal = this.closeEntityModal.bind(this);
+        this.openEntityModal = this.openEntityModal.bind(this);
+        this.openLinkModal = this.openLinkModal.bind(this);
+        this.closeLinkModal = this.closeLinkModal.bind(this);
     }
 
     state = {
         entityType: null,
         entity: null,
-        showModal: false
+        showEntityModal: false,
+        showLinkModal: false,
+        modalLabel: null
     };
 
     componentDidMount() {
         const entityType = this.props.match.params.entityType;
         this.setState((state) => {
             state.entityType = entityType;
+            state.entity = null;
             return state;
         });
     }
@@ -36,6 +41,7 @@ export class EntityExplorer extends React.Component {
         if (entityType !== prevProps.match.params.entityType) {
             this.setState((state) => {
                 state.entityType = entityType;
+                state.entity = null;
                 return state;
             });
         }
@@ -50,16 +56,32 @@ export class EntityExplorer extends React.Component {
     }
 
 
-    closeModal() {
+    closeEntityModal() {
         this.setState((state) => {
-            state.showModal = false;
+            state.showEntityModal = false;
             return state;
         });
     }
 
-    openModal() {
+    openEntityModal(entity) {
         this.setState((state) => {
-            state.showModal = true;
+            state.showEntityModal = true;
+            state.modalLabel = entity;
+            return state;
+        });
+    }
+
+    closeLinkModal() {
+        this.setState((state) => {
+            state.showLinkModal = false;
+            return state;
+        });
+    }
+
+    openLinkModal(sourceEntity, targetEntity) {
+        this.setState((state) => {
+            state.showLinkModal = true;
+            state.modalLabel = sourceEntity + '-' + targetEntity;
             return state;
         });
     }
@@ -73,22 +95,28 @@ export class EntityExplorer extends React.Component {
             </Row>
             <Row className="EntityExplorer-body">
                 <Col className="col-2">
-                    <div style={{height: '90%'}}>
+                    <div style={{height: '93%'}}>
                         <EntityList entityType={this.state.entityType} onSelectEntity={this.onSelectEntity}/>
                     </div>
                 </Col>
                 <Col className="col-8">
-                    <div style={{height: '90%'}}>
-                        <EntityRelationsGraph entityType={this.state.entityType} entity={this.state.entity}/>
+                    <div style={{height: '93%'}}>
+                        <EntityRelationsGraph entityType={this.state.entityType}
+                                              entity={this.state.entity}
+                                              onEntityClick={this.openEntityModal}
+                                              onLinkClick={this.openLinkModal}/>
                     </div>
                 </Col>
                 <Col className="col-2">
-                    <div style={{height: '90%'}}>
+                    <div style={{height: '93%'}}>
                         <EntityTypeViewer/>
                     </div>
                 </Col>
             </Row>
-            <EntityNews showModal={this.state.showModal} onCloseModal={this.closeModal}/>
+            <NewsModal title={this.state.modalLabel} showModal={this.state.showEntityModal}
+                       onCloseModal={this.closeEntityModal}/>
+            <NewsModal title={this.state.modalLabel} showModal={this.state.showLinkModal}
+                       onCloseModal={this.closeLinkModal}/>
         </Container>;
     }
 }

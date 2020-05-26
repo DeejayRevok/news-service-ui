@@ -40,12 +40,12 @@ export class EntityRelationsGraph extends React.Component {
             }
         ],
         links: [
-            {source: 'Julio Cortazar', target: 'Manolo el del bombo', width: 3},
-            {source: 'Julio Cortazar', target: 'Julia Bond', width: 1},
-            {source: 'Manolo el del bombo', target: 'Benito Camela', width: 2.5},
-            {source: 'Benito Camela', target: 'Julio Cortazar', width: 2},
-            {source: 'Benito Camela', target: 'María Fontaneda', width: 2.5},
-            {source: 'María Fontaneda', target: 'Julia Bond', width: 1.5}
+            {source: 'Julio Cortazar', target: 'Manolo el del bombo', width: 3, label:'Julio Cortazar - Manolo el del bombo'},
+            {source: 'Julio Cortazar', target: 'Julia Bond', width: 1, label:'Julio Cortazar - Julia Bond'},
+            {source: 'Manolo el del bombo', target: 'Benito Camela', width: 2.5, label:'Manolo el del bombo - Benito Camela'},
+            {source: 'Benito Camela', target: 'Julio Cortazar', width: 2, label:'Benito Camela - Julio Cortazar'},
+            {source: 'Benito Camela', target: 'María Fontaneda', width: 2.5, label:'Benito Camela - María Fontaneda'},
+            {source: 'María Fontaneda', target: 'Julia Bond', width: 1.5, label:'María Fontaneda - Julia Bond'}
         ]
     };
 
@@ -83,12 +83,12 @@ export class EntityRelationsGraph extends React.Component {
             }
         ],
         links: [
-            {source: 'Julio Cortazar', target: 'Finlandia', width: 3},
-            {source: 'Finlandia', target: 'Apple', width: 1},
-            {source: 'Finlandia', target: '30 de Febrero', width: 2.5},
-            {source: 'Finlandia', target: 'Everest', width: 2},
-            {source: 'Everest', target: 'Apple', width: 2.5},
-            {source: '30 de Febrero', target: 'Julio Cortazar', width: 1.5}
+            {source: 'Julio Cortazar', target: 'Finlandia', width: 3, label:'Julio Cortazar - Finlandia'},
+            {source: 'Finlandia', target: 'Apple', width: 1, label:'Finlandia - Apple'},
+            {source: 'Finlandia', target: '30 de Febrero', width: 2.5, label:'Finlandia - 30 de Febrero'},
+            {source: 'Finlandia', target: 'Everest', width: 2, label:'Finlandia - Everest'},
+            {source: 'Everest', target: 'Apple', width: 2.5, label:'Everest - Apple'},
+            {source: '30 de Febrero', target: 'Julio Cortazar', width: 1.5, label:'30 de Febrero - Julio Cortazar'}
         ]
     };
 
@@ -97,11 +97,34 @@ export class EntityRelationsGraph extends React.Component {
         width: null,
     };
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.onEntityClick = this.onEntityClick.bind(this);
+        this.onLinkClick = this.onLinkClick.bind(this);
+        this.updateDimensions = this.updateDimensions.bind(this);
+    }
+
+    updateDimensions(){
         const height = document.getElementById('graphContainer').clientHeight;
         const width = document.getElementById('graphContainer').clientWidth;
         this.setState({height: height, width: width});
     }
+
+    componentDidMount() {
+        const height = document.getElementById('graphContainer').clientHeight;
+        const width = document.getElementById('graphContainer').clientWidth;
+        this.setState({height: height, width: width});
+        window.addEventListener('resize', this.updateDimensions);
+    }
+
+    onEntityClick(node, event){
+        this.props.onEntityClick(node.label);
+    }
+
+    onLinkClick(link, event){
+        this.props.onLinkClick(link.source.label, link.target.label);
+    }
+
 
     render() {
         const entity = this.props.entity;
@@ -126,6 +149,9 @@ export class EntityRelationsGraph extends React.Component {
                             nodeColor='color'
                             nodeLabel='label'
                             linkWidth='width'
+                            linkLabel='label'
+                            onNodeClick={this.onEntityClick}
+                            onLinkClick={this.onLinkClick}
                         /> : <div/>
                     }
                 </div>
