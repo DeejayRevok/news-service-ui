@@ -1,5 +1,5 @@
 import * as React from "react";
-import {New} from "../new/New";
+import {New} from "./New";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import "./NewsContainer.css"
 

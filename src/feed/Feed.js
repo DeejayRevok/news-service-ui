@@ -4,7 +4,7 @@ import {NewsContainer} from "./NewsContainer";
 import feed from "../assets/feed.svg";
 import {NSNavbar} from "../navbar/NSNavbar";
 import {Col, Container, Row} from "react-bootstrap";
-import {NewViewer} from "./newViewer/NewViewer";
+import {NewViewer} from "./NewViewer";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 
 export class Feed extends React.Component {

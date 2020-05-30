@@ -2,7 +2,8 @@ import * as React from "react";
 import {Card, Nav} from "react-bootstrap";
 import "./NewViewer.css";
 import ReactWordcloud from "react-wordcloud";
-import entities from "../../lib/Entities";
+import entities from "../lib/Entities";
+import {Link} from "react-router-dom";
 
 export class NewViewer extends React.Component {
 
@@ -30,9 +31,23 @@ export class NewViewer extends React.Component {
         const newTitle = this.props.newData.title;
         const newContent = this.props.newData.content;
         const newEntities = this.props.newData.entities;
+        const newSentiment = this.props.newData.sentiment;
         return <Card className="NewViewer">
             <Card.Header style={{backgroundColor: 'silver'}}>
-                <div className="NewTitle">{newTitle}</div>
+                <div style={{display: 'flex'}}>
+                    <div className="NewTitle">{newTitle}</div>
+                    <div style={{marginLeft: 'auto', display: 'flex'}}>
+                        <Link to="/sentiment">
+                            Sentiment:
+                        </Link>
+                        <div style={{
+                            paddingLeft: '5px',
+                            fontWeight: 'bold',
+                            color: (newSentiment < 0) ? '#bf1408' : '#069e18'
+                        }}>
+                            {newSentiment}</div>
+                    </div>
+                </div>
                 <Nav variant="tabs" defaultActiveKey='#content'>
                     <Nav.Item>
                         <Nav.Link href="#content" onClick={() => this.setActiveTab("#content")}>Content</Nav.Link>
@@ -43,11 +58,10 @@ export class NewViewer extends React.Component {
                 </Nav>
             </Card.Header>
             <Card.Body>
-                <Card.Text>
-                    {this.state.activeTab === "#content" ? newContent :
-                        <ReactWordcloud options={this.wordCloudOptions} callbacks={this.wordCloudCallbacks}
-                                        words={newEntities}/>}
-                </Card.Text>
+                {this.state.activeTab === "#content" ? <Card.Text>{newContent}</Card.Text>
+                    :
+                    <ReactWordcloud options={this.wordCloudOptions} callbacks={this.wordCloudCallbacks}
+                                    words={newEntities}/>}
             </Card.Body>
         </Card>;
     }

@@ -8,6 +8,7 @@ import {Feed} from "./feed/Feed";
 import {Login} from "./login/Login";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {EntityExplorer} from "./entityExplorer/EntityExplorer";
+import {SentimentExplorer} from "./sentimentExplorer/SentimentExplorer";
 
 ReactDOM.render(
     <BrowserRouter>
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path="/feed" component={Feed}/>
         <Route path="/login" component={Login}/>
         <Route path="/entities/:entityType" component={EntityExplorer}/>
+        <Route path="/sentiment" component={SentimentExplorer}/>
     </BrowserRouter>,
     document.getElementById('root')
 );
