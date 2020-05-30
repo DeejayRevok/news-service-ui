@@ -139,7 +139,7 @@ export class EntityRelationsGraph extends React.Component {
                 }
             </Card.Header>
             <Card.Body>
-                <div id='graphContainer' style={{height: '100%', width: '100%'}}>
+                <div id='graphContainer' style={{minHeight: '100%', width: '100%'}}>
                     {(this.state.height !== null) ?
                         <ForceGraph2D
                             width={this.state.width}

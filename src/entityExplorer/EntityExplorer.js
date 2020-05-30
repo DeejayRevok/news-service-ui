@@ -7,6 +7,7 @@ import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 import {EntityList} from "./EntityList";
 import {EntityRelationsGraph} from "./EntityRelationsGraph";
 import {NewsModal} from "./NewsModal";
+import {EntityTypesChart} from "./EntityTypesChart";
 
 export class EntityExplorer extends React.Component {
 
@@ -100,12 +101,21 @@ export class EntityExplorer extends React.Component {
                     </div>
                 </Col>
                 <Col className="col-8">
-                    <div style={{height: '93%'}}>
-                        <EntityRelationsGraph entityType={this.state.entityType}
-                                              entity={this.state.entity}
-                                              onEntityClick={this.openEntityModal}
-                                              onLinkClick={this.openLinkModal}/>
-                    </div>
+                    <Container fluid style={{height: '100%'}}>
+                        <Row style={{height: '65%', paddingBottom: '10px'}}>
+                            <div style={{height: '100%', width: '100%'}}>
+                                <EntityRelationsGraph entityType={this.state.entityType}
+                                                      entity={this.state.entity}
+                                                      onEntityClick={this.openEntityModal}
+                                                      onLinkClick={this.openLinkModal}/>
+                            </div>
+                        </Row>
+                        <Row style={{height: '28%'}}>
+                            <div style={{height: '100%', width: '100%'}}>
+                                <EntityTypesChart entityType={this.state.entityType}/>
+                            </div>
+                        </Row>
+                    </Container>
                 </Col>
                 <Col className="col-2">
                     <div style={{height: '93%'}}>
