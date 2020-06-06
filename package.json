@@ -51,6 +51,7 @@
     "fibers": "5.0.0",
     "sass": "1.26.5",
     "node-sass": "4.14.1",
-    "recharts": "1.8.5"
+    "recharts": "1.8.5",
+    "moment": "2.26.0"
   }
 }
