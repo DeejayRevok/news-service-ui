@@ -18,14 +18,6 @@ export class SentimentExplorer extends React.Component {
         { value: -3.1, time: 1503611308914 },
     ]
 
-    sentimentAggregateData = [
-        { value: 1, time: 1591441200000 },
-        { value: -1, time: 1591444800000 },
-        { value: 0.5, time: 1591448400000 },
-        { value: -0.5, time: 1591452000000 },
-        { value: -1.2, time: 1591455600000 },
-    ]
-
     render() {
         return <Container className="SentimentExplorer">
             <Row>
