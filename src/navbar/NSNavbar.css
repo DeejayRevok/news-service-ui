@@ -9,3 +9,8 @@
     border-bottom: 2px solid;
     justify-content: space-between;
 }
+
+.NavbarUserDropdown{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
