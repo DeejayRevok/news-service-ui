@@ -1,8 +1,13 @@
 import * as React from "react";
 import {Card, ListGroup} from "react-bootstrap";
 import "./EntityList.css";
+import PropTypes from 'prop-types';
 
 export class EntityList extends React.Component{
+
+    static propTypes = {
+        entityType: PropTypes.string
+    }
 
     entitiesByType = {
         PER: ['Julio Cortazar', 'Manolo el del bombo', 'Benito Camela', 'Julia Bond', 'María Fontaneda'],

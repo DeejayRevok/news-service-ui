@@ -1,9 +1,16 @@
 import * as React from "react";
 import {New} from "./New";
 import ScrollMenu from "react-horizontal-scrolling-menu";
-import "./NewsContainer.css"
+import "./NewsContainer.css";
+import PropTypes from 'prop-types';
 
 export class NewsContainer extends React.Component {
+
+    static propTypes = {
+        news: PropTypes.arrayOf(
+            PropTypes.object
+        )
+    }
 
     Arrow = ({text, className}) => {
         return (

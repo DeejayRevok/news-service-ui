@@ -3,8 +3,15 @@ import {Button, Modal} from "react-bootstrap";
 import "./NewsModal.css";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import PropTypes from 'prop-types';
 
 export class NewsModal extends React.Component{
+
+    static propTypes = {
+        title: PropTypes.string,
+        showModal: PropTypes.bool,
+        onCloseModal: PropTypes.func
+    }
 
     news = [
         {

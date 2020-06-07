@@ -4,8 +4,14 @@ import "./NewViewer.css";
 import ReactWordcloud from "react-wordcloud";
 import entities from "../lib/Entities";
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export class NewViewer extends React.Component {
+
+    static propTypes = {
+        newData: PropTypes.object,
+        sentimentLink: PropTypes.bool
+    }
 
     state = {
         activeTab: '#content'

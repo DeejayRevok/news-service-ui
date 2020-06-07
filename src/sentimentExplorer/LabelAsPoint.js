@@ -1,7 +1,14 @@
 import * as React from "react";
 import "./LabelAsPoint.css";
+import PropTypes from 'prop-types';
 
 export class LabelAsPoint extends React.Component {
+
+    static propTypes = {
+        handleClick: PropTypes.func,
+        index: PropTypes.number
+    }
+
     onClick = () => {
         const index = this.props.index;
         this.props.handleClick(index);

@@ -3,8 +3,16 @@ import {Card} from "react-bootstrap";
 import "./EntityRelationsGraph.css";
 import entityTypes from '../lib/Entities';
 import ForceGraph2D from 'react-force-graph-2d';
+import PropTypes from 'prop-types';
 
 export class EntityRelationsGraph extends React.Component {
+
+    static propTypes = {
+        entityType: PropTypes.string,
+        entity: PropTypes.string,
+        onEntityClick: PropTypes.func,
+        onLinkClick: PropTypes.func
+    }
 
     PERGraph = {
         nodes: [

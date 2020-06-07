@@ -12,8 +12,13 @@ import {
 } from "recharts";
 import moment from "moment";
 import {LabelAsPoint} from "./LabelAsPoint";
+import PropTypes from 'prop-types';
 
 export class SentimentAggregateChart extends React.Component {
+
+    static propTypes = {
+        handleClick: PropTypes.func,
+    }
 
     sentimentHourAggregateData = [
         {value: 1, time: 1591441200000},

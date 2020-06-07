@@ -4,8 +4,13 @@ import entities from '../lib/Entities';
 import {Card} from "react-bootstrap";
 import './EntityTypesChart.css';
 import {renderActiveShape} from "../lib/GraphUtils";
+import PropTypes from 'prop-types';
 
 export class EntityTypesChart extends React.Component{
+
+    static propTypes = {
+        entityType: PropTypes.string
+    }
 
     entitesData = [
         { name: 'PER', value: 400 },

@@ -1,8 +1,14 @@
 import * as React from "react";
 import {NewViewer} from "../newViewer/NewViewer";
 import {Modal} from "react-bootstrap";
+import PropTypes from 'prop-types';
 
 export class NewViewModal extends React.Component{
+
+    static propTypes = {
+        onCloseModal: PropTypes.func,
+        showModal: PropTypes.bool
+    }
 
     newData = {
         title: 'Título de la primera noticia',

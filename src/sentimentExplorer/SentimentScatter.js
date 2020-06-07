@@ -5,8 +5,16 @@ import {CartesianGrid, Cell, ResponsiveContainer, Scatter, ScatterChart, Tooltip
 import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PropTypes from 'prop-types';
 
 export class SentimentScatter extends React.Component {
+
+    static propTypes = {
+        handleNewClick: PropTypes.func,
+        data: PropTypes.arrayOf(
+            PropTypes.object
+        )
+    }
 
     constructor(props) {
         super(props);

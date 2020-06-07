@@ -1,8 +1,15 @@
 import * as React from "react";
 import {Card} from "react-bootstrap";
 import "./New.css";
+import PropTypes from 'prop-types';
 
 export class New extends React.Component{
+
+    static propTypes = {
+        newTitle: PropTypes.string,
+        newSummary: PropTypes.string,
+        newSentiment: PropTypes.number
+    }
 
     render() {
         const title = this.props.newTitle;

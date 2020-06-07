@@ -2,8 +2,17 @@ import * as React from "react";
 import {Card, ListGroup} from "react-bootstrap";
 import "./SentimentTopList.css";
 import ReactTooltip from "react-tooltip";
+import PropTypes from 'prop-types';
 
 export class SentimentTopList extends React.Component{
+
+    static propTypes = {
+        title: PropTypes.string,
+        headerColor: PropTypes.string,
+        data: PropTypes.arrayOf(
+            PropTypes.object
+        )
+    }
 
     render() {
         const title = this.props.title;
