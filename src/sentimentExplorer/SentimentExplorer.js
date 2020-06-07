@@ -20,6 +20,18 @@ export class SentimentExplorer extends React.Component {
         { value: -3.1, time: 1503611308914, newTitle: 'Título de la quinta noticia'},
     ]
 
+    topPositiveNews = [
+        {title: 'Título de la más positiva', sentiment: 5.8},
+        {title: 'Título de la segunda más positiva', sentiment: 5},
+        {title: 'Título de la tercera más positiva', sentiment: 4.4}
+    ]
+
+    topNegativeNews = [
+        {title: 'Título de la más negativa', sentiment: -5.8},
+        {title: 'Título de la segunda más negativa', sentiment: -5},
+        {title: 'Título de la tercera más negativa', sentiment: -4.4}
+    ]
+
     state = {
         showNewModal: false,
         showAggregateModal: false,
@@ -96,12 +108,12 @@ export class SentimentExplorer extends React.Component {
                     <Container fluid style={{height: '100%'}}>
                         <Row style={{height: '46.5%'}}>
                             <div style={{height: '100%', width: '100%', paddingBottom: '10px'}}>
-                                <SentimentTopList title="Best news" headerColor="green" />
+                                <SentimentTopList title="Best news" headerColor="green" data={this.topPositiveNews} />
                             </div>
                         </Row>
                         <Row style={{height: '46.5%'}}>
                             <div style={{height: '100%', width: '100%'}}>
-                                <SentimentTopList title="Worst news" headerColor="red" />
+                                <SentimentTopList title="Worst news" headerColor="red" data={this.topNegativeNews} />
                             </div>
                         </Row>
                     </Container>

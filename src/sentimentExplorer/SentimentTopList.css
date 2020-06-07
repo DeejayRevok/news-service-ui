@@ -1,3 +1,13 @@
 .SentimentTopList{
     height: 100%
 }
+
+.NewListGroup{
+    border-radius: 0 !important;
+}
+
+.NewLabel{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
