@@ -6,7 +6,7 @@ import "./EntityExplorer.css";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 import {EntityList} from "./EntityList";
 import {EntityRelationsGraph} from "./EntityRelationsGraph";
-import {NewsModal} from "./NewsModal";
+import {NewsModal} from "../newsListModal/NewsModal";
 import {EntityTypesChart} from "./EntityTypesChart";
 
 export class EntityExplorer extends React.Component {

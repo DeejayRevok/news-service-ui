@@ -11,6 +11,7 @@ import {
     YAxis
 } from "recharts";
 import moment from "moment";
+import {LabelAsPoint} from "./LabelAsPoint";
 
 export class SentimentAggregateChart extends React.Component {
 
@@ -33,6 +34,7 @@ export class SentimentAggregateChart extends React.Component {
     constructor(props) {
         super(props);
         this.setActiveTab = this.setActiveTab.bind(this);
+        this.onDataClick = this.onDataClick.bind(this);
     }
 
     state = {
@@ -44,6 +46,13 @@ export class SentimentAggregateChart extends React.Component {
             state.activeTab = tab;
             return state;
         });
+    }
+
+    onDataClick(timestampIndex) {
+        const timestamp = (this.state.activeTab === '#hours')
+            ? this.sentimentHourAggregateData[timestampIndex].time : this.sentimentDayAggregateData[timestampIndex].time
+        const formattedTimestamp = moment(timestamp).format('DD/MM/YYYY hh:mm:ss');
+        this.props.handleClick(formattedTimestamp);
     }
 
     render() {
@@ -76,7 +85,9 @@ export class SentimentAggregateChart extends React.Component {
                         <YAxis dataKey='value' name='Sentiment'/>
                         <Tooltip cursor={{strokeDasharray: '3 3'}}
                                  labelFormatter={(label) => moment(label).format('DD/MM/YYYY hh:mm:ss')}/>
-                        <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{r: 8}}/>
+                        <Line label={<LabelAsPoint handleClick={this.onDataClick}/>} type="monotone" dataKey="value"
+                              stroke="#8884d8"
+                              activeDot={false}/>
 
                     </LineChart>
                 </ResponsiveContainer>

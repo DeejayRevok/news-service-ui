@@ -8,6 +8,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export class SentimentScatter extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.onNewClick = this.onNewClick.bind(this);
+    }
+
     handleStartChange = date => {
         this.setState((state) => {
             state.startDate = date;
@@ -26,6 +31,10 @@ export class SentimentScatter extends React.Component {
         startDate: new Date().setDate(new Date().getDate() - 1),
         endDate: new Date()
     };
+
+    onNewClick(newTitle) {
+        this.props.handleNewClick(newTitle);
+    }
 
     render() {
         const data = this.props.data;
@@ -79,7 +88,9 @@ export class SentimentScatter extends React.Component {
                             >
                                 {
                                     data.map((entry, index) => <Cell key={`cell-${index}`}
-                                                                     fill={(entry.value > 0) ? 'green' : 'red'}/>)
+                                                                     fill={(entry.value > 0) ? 'green' : 'red'}
+                                                                     className="CustomCell"
+                                                                     onClick={() => this.onNewClick(entry.newTitle)}/>)
                                 }
                             </Scatter>
 

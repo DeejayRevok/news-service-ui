@@ -4,7 +4,7 @@ import {NewsContainer} from "./NewsContainer";
 import feed from "../assets/feed.svg";
 import {NSNavbar} from "../navbar/NSNavbar";
 import {Col, Container, Row} from "react-bootstrap";
-import {NewViewer} from "./NewViewer";
+import {NewViewer} from "../newViewer/NewViewer";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 
 export class Feed extends React.Component {
@@ -106,7 +106,7 @@ export class Feed extends React.Component {
                     <Row style={{paddingTop: '10px', minHeight: '100vh', marginTop: '0'}}>
                         <Col className="col-10">
                             <div style={{height: '67%'}}>
-                                <NewViewer newData={this.state.selectedNew}/>
+                                <NewViewer newData={this.state.selectedNew} sentimentLink={true}/>
                             </div>
                         </Col>
                         <Col className="col-2">

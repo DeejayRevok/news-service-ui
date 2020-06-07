@@ -32,14 +32,19 @@ export class NewViewer extends React.Component {
         const newContent = this.props.newData.content;
         const newEntities = this.props.newData.entities;
         const newSentiment = this.props.newData.sentiment;
+        const sentimentDiv = (this.props.sentimentLink) ?
+            <Link to="/sentiment">
+                Sentiment:
+            </Link> :
+            <div>
+                Sentiment:
+            </div>;
         return <Card className="NewViewer">
             <Card.Header style={{backgroundColor: 'silver'}}>
                 <div style={{display: 'flex'}}>
                     <div className="NewTitle">{newTitle}</div>
                     <div style={{marginLeft: 'auto', display: 'flex'}}>
-                        <Link to="/sentiment">
-                            Sentiment:
-                        </Link>
+                        {sentimentDiv}
                         <div style={{
                             paddingLeft: '5px',
                             fontWeight: 'bold',

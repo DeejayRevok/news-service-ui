@@ -7,16 +7,61 @@ import {SentimentScatter} from "./SentimentScatter";
 import {SentimentAggregateChart} from "./SentimentAggregateChart";
 import {SentimentPie} from "./SentimentPie";
 import {SentimentTopList} from "./SentimentTopList";
+import {NewViewModal} from "./NewViewModal";
+import {NewsModal} from "../newsListModal/NewsModal";
 
 export class SentimentExplorer extends React.Component {
 
     sentimentScatterData = [
-        { value: 1.2, time: 1503617297689 },
-        { value: -1, time: 1503616962277 },
-        { value: 2.02, time: 1503616882654 },
-        { value: -0.4, time: 1503613184594 },
-        { value: -3.1, time: 1503611308914 },
+        { value: 1.2, time: 1503617297689, newTitle: 'Título de la primera noticia'},
+        { value: -1, time: 1503616962277, newTitle: 'Título de la segunda noticia'},
+        { value: 2.02, time: 1503616882654, newTitle: 'Título de la tercera noticia'},
+        { value: -0.4, time: 1503613184594, newTitle: 'Título de la cuarta noticia'},
+        { value: -3.1, time: 1503611308914, newTitle: 'Título de la quinta noticia'},
     ]
+
+    state = {
+        showNewModal: false,
+        showAggregateModal: false,
+        selectedAggregate: ''
+    }
+
+    constructor(props) {
+        super(props);
+        this.onCloseNewModal = this.onCloseNewModal.bind(this);
+        this.handleScatterClick = this.handleScatterClick.bind(this);
+        this.onCloseAggregateModal = this.onCloseAggregateModal.bind(this);
+        this.handleAggregateClick = this.handleAggregateClick.bind(this);
+    }
+
+    onCloseNewModal(){
+        this.setState((state) =>{
+            state.showNewModal = false;
+            return state;
+        })
+    }
+
+    onCloseAggregateModal(){
+        this.setState((state) =>{
+            state.showAggregateModal = false;
+            return state;
+        })
+    }
+
+    handleScatterClick(newTitle){
+        this.setState((state) => {
+           state.showNewModal = true;
+           return state;
+        });
+    }
+
+    handleAggregateClick(aggregateTimestamp){
+        this.setState((state) => {
+            state.showAggregateModal = true;
+            state.selectedAggregate = aggregateTimestamp;
+            return state;
+        });
+    }
 
     render() {
         return <Container className="SentimentExplorer">
@@ -30,13 +75,13 @@ export class SentimentExplorer extends React.Component {
                     <Container fluid style={{height: '100%'}}>
                         <Row style={{height: '58%'}}>
                             <div style={{height: '100%', width: '100%', paddingBottom: '10px'}}>
-                                <SentimentScatter data={this.sentimentScatterData}/>
+                                <SentimentScatter data={this.sentimentScatterData} handleNewClick={this.handleScatterClick}/>
                             </div>
                         </Row>
                         <Row style={{height: '35%'}}>
                             <Col className="col-8" style={{paddingLeft: '0px'}}>
                                 <div style={{height: '100%', width: '100%'}}>
-                                    <SentimentAggregateChart data={this.sentimentAggregateData}/>
+                                    <SentimentAggregateChart handleClick={this.handleAggregateClick}/>
                                 </div>
                             </Col>
                             <Col className="col-4" style={{paddingRight: '0px'}}>
@@ -62,6 +107,9 @@ export class SentimentExplorer extends React.Component {
                     </Container>
                 </Col>
             </Row>
+            <NewViewModal showModal={this.state.showNewModal} onCloseModal={this.onCloseNewModal} />
+            <NewsModal title={this.state.selectedAggregate} showModal={this.state.showAggregateModal}
+                       onCloseModal={this.onCloseAggregateModal}/>
         </Container>;
     }
 }
