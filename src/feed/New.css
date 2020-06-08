@@ -1,0 +1,23 @@
+.newCard{
+    width: 18rem;
+    height: 18rem;
+    border-radius: 5px !important;
+    border-color: white !important;
+}
+
+.newCardHeader{
+    font-size: 20px;
+    border-bottom: 1px solid;
+    padding: .75rem 1.25rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 15%;
+    color: white;
+}
+
+.newCardBody{
+    height: 85%;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

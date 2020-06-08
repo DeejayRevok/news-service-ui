@@ -1,0 +1,24 @@
+.EntityTypeViewer{
+    height: 100%;
+}
+
+.EntityTypeViewerBody{
+    padding: 0 !important;
+}
+
+.EntityTypeViewerGroup{
+    border-radius: 0 !important;
+}
+
+.EntityTypeLabel{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.EntityTypeColorSquare{
+    height: 15px;
+    width: 15px;
+    background-color: #555;
+    border-radius: 5px;
+}

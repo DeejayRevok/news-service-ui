@@ -1,0 +1,7 @@
+.SentimentChart{
+    height: 100%;
+}
+
+.CustomCell:hover{
+    cursor: pointer;
+}
