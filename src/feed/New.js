@@ -2,6 +2,7 @@ import * as React from "react";
 import {Card} from "react-bootstrap";
 import "./New.css";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class New extends React.Component{
 
@@ -11,7 +12,7 @@ export class New extends React.Component{
         newSentiment: PropTypes.number
     }
 
-    render() {
+    render(): ReactNode{
         const title = this.props.newTitle;
         const summary = this.props.newSummary;
         const sentiment = this.props.newSentiment;

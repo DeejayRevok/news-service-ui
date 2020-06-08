@@ -3,6 +3,7 @@ import {Card, ListGroup} from "react-bootstrap";
 import "./SentimentTopList.css";
 import ReactTooltip from "react-tooltip";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class SentimentTopList extends React.Component{
 
@@ -14,7 +15,7 @@ export class SentimentTopList extends React.Component{
         )
     }
 
-    render() {
+    render(): ReactNode{
         const title = this.props.title;
         const headerColor = this.props.headerColor;
         const newList = this.props.data.map(newData =>

@@ -9,6 +9,7 @@ import {SentimentPie} from "./SentimentPie";
 import {SentimentTopList} from "./SentimentTopList";
 import {NewViewModal} from "./NewViewModal";
 import {NewsModal} from "../newsListModal/NewsModal";
+import {ReactNode} from "react";
 
 export class SentimentExplorer extends React.Component {
 
@@ -46,28 +47,28 @@ export class SentimentExplorer extends React.Component {
         this.handleAggregateClick = this.handleAggregateClick.bind(this);
     }
 
-    onCloseNewModal(){
+    onCloseNewModal(): void{
         this.setState((state) =>{
             state.showNewModal = false;
             return state;
         })
     }
 
-    onCloseAggregateModal(){
+    onCloseAggregateModal(): void{
         this.setState((state) =>{
             state.showAggregateModal = false;
             return state;
         })
     }
 
-    handleScatterClick(newTitle){
+    handleScatterClick(newTitle: string): void{
         this.setState((state) => {
            state.showNewModal = true;
            return state;
         });
     }
 
-    handleAggregateClick(aggregateTimestamp){
+    handleAggregateClick(aggregateTimestamp: string): void{
         this.setState((state) => {
             state.showAggregateModal = true;
             state.selectedAggregate = aggregateTimestamp;
@@ -75,7 +76,7 @@ export class SentimentExplorer extends React.Component {
         });
     }
 
-    render() {
+    render(): ReactNode{
         return <Container className="SentimentExplorer">
             <Row>
                 <Col style={{paddingLeft: 0, paddingRight: 0}}>

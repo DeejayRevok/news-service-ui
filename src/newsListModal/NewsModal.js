@@ -4,6 +4,7 @@ import "./NewsModal.css";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class NewsModal extends React.Component{
 
@@ -46,11 +47,11 @@ export class NewsModal extends React.Component{
         this.handleClose = this.handleClose.bind(this);
     }
 
-    handleClose(){
+    handleClose(): void{
         this.props.onCloseModal();
     }
 
-    render(){
+    render(): ReactNode{
         const newsList = this.news.map(newData =>
             <Card key={newData.title} style={{borderColor: 'black'}}>
                 <Card.Header style={{backgroundColor: (newData.sentiment<0) ? '#ffbfbf':'#bfffcb'}}>

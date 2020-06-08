@@ -2,6 +2,7 @@ import * as React from "react";
 import {NewViewer} from "../newViewer/NewViewer";
 import {Modal} from "react-bootstrap";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class NewViewModal extends React.Component{
 
@@ -22,16 +23,16 @@ export class NewViewModal extends React.Component{
         sentiment: 1
     }
 
-    constructor(props) {
+    constructor(props){
         super(props);
         this.handleClose = this.handleClose.bind(this);
     }
 
-    handleClose(){
+    handleClose(): void{
         this.props.onCloseModal();
     }
 
-    render() {
+    render(): ReactNode{
         const showModal = this.props.showModal;
         return <Modal show={showModal} onHide={this.handleClose}>
             <NewViewer newData={this.newData} sentimentLink={false}/>

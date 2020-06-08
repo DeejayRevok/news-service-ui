@@ -5,6 +5,7 @@ import ReactWordcloud from "react-wordcloud";
 import entities from "../lib/Entities";
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class NewViewer extends React.Component {
 
@@ -17,7 +18,7 @@ export class NewViewer extends React.Component {
         activeTab: '#content'
     };
 
-    setActiveTab(tab) {
+    setActiveTab(tab): void{
         this.setState({activeTab: tab});
     }
 
@@ -33,7 +34,7 @@ export class NewViewer extends React.Component {
         fontSizes: [15, 40]
     };
 
-    render() {
+    render(): ReactNode{
         const newTitle = this.props.newData.title;
         const newContent = this.props.newData.content;
         const newEntities = this.props.newData.entities;

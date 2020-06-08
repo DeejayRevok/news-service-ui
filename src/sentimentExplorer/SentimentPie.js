@@ -3,6 +3,7 @@ import {Card} from "react-bootstrap";
 import "./SentimentPie.css";
 import {Cell, Pie, PieChart, ResponsiveContainer, Tooltip} from "recharts";
 import {renderActiveShape} from "../lib/GraphUtils";
+import {ReactNode} from "react";
 
 export class SentimentPie extends React.Component {
 
@@ -20,14 +21,14 @@ export class SentimentPie extends React.Component {
         activeLabel: 'Positive'
     }
 
-    onClickCell(label){
+    onClickCell(label: string): void{
         this.setState((state) =>{
            state.activeLabel = label;
            return state;
         });
     }
 
-    render() {
+    render(): ReactNode {
         const chartCells = this.sentimentData.map(entry => <Cell style={{border: '10px solid black'}}
                                                                  key={entry.name}
                                                                  fill={(entry.name === 'Positive') ? 'green' : 'red'}

@@ -4,10 +4,11 @@ import "./EntityTypeViewer.css"
 import entities from "../lib/Entities";
 import ReactTooltip from "react-tooltip";
 import {Link} from "react-router-dom";
+import {ReactNode} from "react";
 
 export class EntityTypeViewer extends React.Component {
 
-    render() {
+    render(): ReactNode{
         const entityList = Object.keys(entities).map(entityType =>
             <ListGroup.Item key={entityType}>
                 <div className="EntityTypeLabel">

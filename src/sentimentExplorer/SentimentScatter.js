@@ -6,6 +6,7 @@ import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class SentimentScatter extends React.Component {
 
@@ -40,11 +41,11 @@ export class SentimentScatter extends React.Component {
         endDate: new Date()
     };
 
-    onNewClick(newTitle) {
+    onNewClick(newTitle: string): void{
         this.props.handleNewClick(newTitle);
     }
 
-    render() {
+    render(): ReactNode{
         const data = this.props.data;
         return <Card className="SentimentChart">
             <Card.Header style={{backgroundColor: 'silver'}}>

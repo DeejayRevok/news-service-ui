@@ -1,11 +1,11 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import {Button, Form} from "react-bootstrap";
 import './Login.css';
 import {Link} from "react-router-dom";
 
 export class Login extends React.Component {
 
-    render() {
+    render(): ReactNode{
         return (
             <div className="Login">
                 <div className="LoginFormWraper">

@@ -13,6 +13,7 @@ import {
 import moment from "moment";
 import {LabelAsPoint} from "./LabelAsPoint";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class SentimentAggregateChart extends React.Component {
 
@@ -46,21 +47,21 @@ export class SentimentAggregateChart extends React.Component {
         activeTab: '#hours'
     };
 
-    setActiveTab(tab) {
+    setActiveTab(tab): void{
         this.setState((state) => {
             state.activeTab = tab;
             return state;
         });
     }
 
-    onDataClick(timestampIndex) {
+    onDataClick(timestampIndex: number): void {
         const timestamp = (this.state.activeTab === '#hours')
             ? this.sentimentHourAggregateData[timestampIndex].time : this.sentimentDayAggregateData[timestampIndex].time
         const formattedTimestamp = moment(timestamp).format('DD/MM/YYYY hh:mm:ss');
         this.props.handleClick(formattedTimestamp);
     }
 
-    render() {
+    render(): ReactNode{
         const data = (this.state.activeTab === '#hours') ?
             this.sentimentHourAggregateData : this.sentimentDayAggregateData;
         return <Card className="SentimentAggregateChart">

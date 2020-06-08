@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./LabelAsPoint.css";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class LabelAsPoint extends React.Component {
 
@@ -13,7 +14,7 @@ export class LabelAsPoint extends React.Component {
         const index = this.props.index;
         this.props.handleClick(index);
     }
-    render() {
+    render(): ReactNode{
         const { x, y } = this.props;
         return (
             <circle

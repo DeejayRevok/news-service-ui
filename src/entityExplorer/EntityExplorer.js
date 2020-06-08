@@ -8,10 +8,11 @@ import {EntityList} from "./EntityList";
 import {EntityRelationsGraph} from "./EntityRelationsGraph";
 import {NewsModal} from "../newsListModal/NewsModal";
 import {EntityTypesChart} from "./EntityTypesChart";
+import {ReactNode} from "react";
 
 export class EntityExplorer extends React.Component {
 
-    constructor(props) {
+    constructor(props: object) {
         super(props);
         this.onSelectEntity = this.onSelectEntity.bind(this);
         this.closeEntityModal = this.closeEntityModal.bind(this);
@@ -28,7 +29,7 @@ export class EntityExplorer extends React.Component {
         modalLabel: null
     };
 
-    componentDidMount() {
+    componentDidMount(): void {
         const entityType = this.props.match.params.entityType;
         this.setState((state) => {
             state.entityType = entityType;
@@ -37,7 +38,7 @@ export class EntityExplorer extends React.Component {
         });
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps:object, prevState:object, snapshot): void {
         const entityType = this.props.match.params.entityType;
         if (entityType !== prevProps.match.params.entityType) {
             this.setState((state) => {
@@ -48,7 +49,7 @@ export class EntityExplorer extends React.Component {
         }
     }
 
-    onSelectEntity(entity, entityType) {
+    onSelectEntity(entity: string, entityType: string): void {
         this.setState((state) => {
             state.entityType = entityType;
             state.entity = entity;
@@ -57,14 +58,14 @@ export class EntityExplorer extends React.Component {
     }
 
 
-    closeEntityModal() {
+    closeEntityModal(): void {
         this.setState((state) => {
             state.showEntityModal = false;
             return state;
         });
     }
 
-    openEntityModal(entity) {
+    openEntityModal(entity: string): void {
         this.setState((state) => {
             state.showEntityModal = true;
             state.modalLabel = entity;
@@ -72,14 +73,14 @@ export class EntityExplorer extends React.Component {
         });
     }
 
-    closeLinkModal() {
+    closeLinkModal(): void{
         this.setState((state) => {
             state.showLinkModal = false;
             return state;
         });
     }
 
-    openLinkModal(sourceEntity, targetEntity) {
+    openLinkModal(sourceEntity: string, targetEntity: string): void {
         this.setState((state) => {
             state.showLinkModal = true;
             state.modalLabel = sourceEntity + '-' + targetEntity;
@@ -87,7 +88,7 @@ export class EntityExplorer extends React.Component {
         });
     }
 
-    render() {
+    render(): ReactNode {
         return <Container className="EntityExplorer">
             <Row>
                 <Col style={{paddingLeft: 0, paddingRight: 0}}>

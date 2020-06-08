@@ -5,6 +5,7 @@ import {Card} from "react-bootstrap";
 import './EntityTypesChart.css';
 import {renderActiveShape} from "../lib/GraphUtils";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class EntityTypesChart extends React.Component{
 
@@ -21,7 +22,7 @@ export class EntityTypesChart extends React.Component{
         { name: 'MONEY', value: 150 },
     ]
 
-    render() {
+    render(): ReactNode{
         const chartCells = this.entitesData.map(entry => <Cell style={{border: '10px solid black'}} key={entry.name} fill={entities[entry.name]['color']} />)
         const activeIndex = this.entitesData.findIndex(entry => entry.name === this.props.entityType);
         return <Card className="EntityTypesChart">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import user from "../assets/user.svg";
 import feed from "../assets/feed.svg";
 import './NSNavbar.css';
@@ -15,7 +15,7 @@ export class NSNavbar extends React.Component {
         sectionIcon: PropTypes.node
     }
 
-    render() {
+    render(): ReactNode{
         const sectionName = this.props.sectionName;
         const sectionIcon = this.props.sectionIcon;
         return <div className="Navbar">

@@ -2,6 +2,7 @@ import * as React from "react";
 import {Card, ListGroup} from "react-bootstrap";
 import "./EntityList.css";
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class EntityList extends React.Component{
 
@@ -22,7 +23,7 @@ export class EntityList extends React.Component{
         this.props.onSelectEntity(entity, this.props.entityType)
     };
 
-    render() {
+    render(): ReactNode{
         const entityType = this.props.entityType;
         const entityList = (entityType !== null && entityType !== undefined) ? this.entitiesByType[entityType].map(entity =>
             <ListGroup.Item key={entity} action onClick={(ev) => this.onClickEntity(entity)}>

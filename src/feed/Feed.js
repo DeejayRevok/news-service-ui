@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import './Feed.css';
 import {NewsContainer} from "./NewsContainer";
 import feed from "../assets/feed.svg";
@@ -89,7 +89,7 @@ export class Feed extends React.Component {
         this.setState({selectedNew: this.findNewByTitle(newTitle)});
     };
 
-    render() {
+    render(): ReactNode{
         return <Container className="Feed">
             <Row>
                 <Col style={{paddingLeft: 0, paddingRight: 0}}>

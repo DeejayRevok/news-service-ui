@@ -4,6 +4,7 @@ import "./EntityRelationsGraph.css";
 import entityTypes from '../lib/Entities';
 import ForceGraph2D from 'react-force-graph-2d';
 import PropTypes from 'prop-types';
+import {ReactNode} from "react";
 
 export class EntityRelationsGraph extends React.Component {
 
@@ -105,36 +106,36 @@ export class EntityRelationsGraph extends React.Component {
         width: null,
     };
 
-    constructor(props) {
+    constructor(props: object) {
         super(props);
         this.onEntityClick = this.onEntityClick.bind(this);
         this.onLinkClick = this.onLinkClick.bind(this);
         this.updateDimensions = this.updateDimensions.bind(this);
     }
 
-    updateDimensions(){
+    updateDimensions(): void{
         const height = document.getElementById('graphContainer').clientHeight;
         const width = document.getElementById('graphContainer').clientWidth;
         this.setState({height: height, width: width});
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         const height = document.getElementById('graphContainer').clientHeight;
         const width = document.getElementById('graphContainer').clientWidth;
         this.setState({height: height, width: width});
         window.addEventListener('resize', this.updateDimensions);
     }
 
-    onEntityClick(node, event){
+    onEntityClick(node: object, event: object): void{
         this.props.onEntityClick(node.label);
     }
 
-    onLinkClick(link, event){
+    onLinkClick(link: object, event: object): void{
         this.props.onLinkClick(link.source.label, link.target.label);
     }
 
 
-    render() {
+    render(): ReactNode{
         const entity = this.props.entity;
         const entityType = this.props.entityType;
         const graphData = (entity !== null && entity !== undefined) ? this.JulioGraph : this.PERGraph;

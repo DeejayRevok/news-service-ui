@@ -1,7 +1,8 @@
 import {Sector} from "recharts";
 import * as React from "react";
+import {ReactNode} from "react";
 
-export function renderActiveShape(props) {
+export function renderActiveShape(props: object): ReactNode {
     const RADIAN = Math.PI / 180;
     const {
         cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
