@@ -15,6 +15,9 @@ import {LabelAsPoint} from "./LabelAsPoint";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * Sentiment aggregate data line chart component
+ */
 export class SentimentAggregateChart extends React.Component {
 
     static propTypes = {
@@ -37,6 +40,11 @@ export class SentimentAggregateChart extends React.Component {
         {value: -1.2, time: 1591872561000},
     ]
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props) {
         super(props);
         this.setActiveTab = this.setActiveTab.bind(this);
@@ -47,6 +55,11 @@ export class SentimentAggregateChart extends React.Component {
         activeTab: '#hours'
     };
 
+    /**
+     * Update the state with the selected tab
+     *
+     * @param tab Name of the selected tab
+     */
     setActiveTab(tab): void{
         this.setState((state) => {
             state.activeTab = tab;
@@ -54,6 +67,11 @@ export class SentimentAggregateChart extends React.Component {
         });
     }
 
+    /**
+     * Update the parent component with the clicked data point timestamp
+     *
+     * @param timestampIndex Index of the selected data point timestamp
+     */
     onDataClick(timestampIndex: number): void {
         const timestamp = (this.state.activeTab === '#hours')
             ? this.sentimentHourAggregateData[timestampIndex].time : this.sentimentDayAggregateData[timestampIndex].time
@@ -61,6 +79,11 @@ export class SentimentAggregateChart extends React.Component {
         this.props.handleClick(formattedTimestamp);
     }
 
+    /**
+     * Render the sentiment aggregate chart component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const data = (this.state.activeTab === '#hours') ?
             this.sentimentHourAggregateData : this.sentimentDayAggregateData;

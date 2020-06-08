@@ -4,6 +4,9 @@ import "./New.css";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * New data component
+ */
 export class New extends React.Component{
 
     static propTypes = {
@@ -12,6 +15,11 @@ export class New extends React.Component{
         newSentiment: PropTypes.number
     }
 
+    /**
+     * Render the new component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const title = this.props.newTitle;
         const summary = this.props.newSummary;

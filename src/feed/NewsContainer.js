@@ -5,6 +5,9 @@ import "./NewsContainer.css";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * New data container component
+ */
 export class NewsContainer extends React.Component {
 
     static propTypes = {
@@ -13,6 +16,14 @@ export class NewsContainer extends React.Component {
         )
     }
 
+    /**
+     * Container arrow component
+     *
+     * @param text Arrow component displayed text
+     * @param className CSS class name for the arrow
+     * @returns {*}
+     * @constructor
+     */
     Arrow = ({text, className}) => {
         return (
             <div className={className}
@@ -20,6 +31,11 @@ export class NewsContainer extends React.Component {
         );
     };
 
+    /**
+     * Update the parent component with the selected new
+     *
+     * @param key Key of the selected new
+     */
     onSelect = key => {
         this.props.onSelectNew(key);
     };
@@ -28,6 +44,11 @@ export class NewsContainer extends React.Component {
     ArrowLeft = this.Arrow({text: '<', className: 'arrowPrev'});
     ArrowRight = this.Arrow({text: '>', className: 'arrowNext'});
 
+    /**
+     * Render the news container component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const news = this.props.news;
         const listNews = news.map(item =>

@@ -8,6 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * Sentiment data scatter chart component
+ */
 export class SentimentScatter extends React.Component {
 
     static propTypes = {
@@ -17,11 +20,21 @@ export class SentimentScatter extends React.Component {
         )
     }
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props) {
         super(props);
         this.onNewClick = this.onNewClick.bind(this);
     }
 
+    /**
+     * Handle the start date change updating the state
+     *
+     * @param date New start date
+     */
     handleStartChange = date => {
         this.setState((state) => {
             state.startDate = date;
@@ -29,6 +42,11 @@ export class SentimentScatter extends React.Component {
         });
     };
 
+    /**
+     * Handle the end date change updating the state
+     *
+     * @param date New end date
+     */
     handleEndChange = date => {
         this.setState((state) => {
             state.endDate = date;
@@ -41,10 +59,20 @@ export class SentimentScatter extends React.Component {
         endDate: new Date()
     };
 
+    /**
+     * Update the parent component with title of the clicked data point
+     *
+     * @param newTitle Title of the new which corresponds to the clicked data point
+     */
     onNewClick(newTitle: string): void{
         this.props.handleNewClick(newTitle);
     }
 
+    /**
+     * Render the sentiment scatter chart component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const data = this.props.data;
         return <Card className="SentimentChart">

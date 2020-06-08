@@ -3,8 +3,16 @@ import {Button, Form} from "react-bootstrap";
 import './Login.css';
 import {Link} from "react-router-dom";
 
+/**
+ * Login form component
+ */
 export class Login extends React.Component {
 
+    /**
+     * Render the login form component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         return (
             <div className="Login">

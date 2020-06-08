@@ -4,6 +4,9 @@ import "./EntityList.css";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * Named entities list component
+ */
 export class EntityList extends React.Component{
 
     static propTypes = {
@@ -19,10 +22,20 @@ export class EntityList extends React.Component{
         MONEY: ['13000 $', '150.000 €', 'Un millón de dólares', '300.000 millones de pesetas']
     };
 
+    /**
+     * Update the parent component with the selected entity
+     *
+     * @param entity Selected named entity
+     */
     onClickEntity = entity => {
         this.props.onSelectEntity(entity, this.props.entityType)
     };
 
+    /**
+     * Render the named entities list
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const entityType = this.props.entityType;
         const entityList = (entityType !== null && entityType !== undefined) ? this.entitiesByType[entityType].map(entity =>

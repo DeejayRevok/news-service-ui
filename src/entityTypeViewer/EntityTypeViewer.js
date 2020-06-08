@@ -6,8 +6,15 @@ import ReactTooltip from "react-tooltip";
 import {Link} from "react-router-dom";
 import {ReactNode} from "react";
 
+/**
+ * Named entity types viewer component
+ */
 export class EntityTypeViewer extends React.Component {
-
+    /**
+     * Render the entity types viewer
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const entityList = Object.keys(entities).map(entityType =>
             <ListGroup.Item key={entityType}>

@@ -8,6 +8,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 
+/**
+ * Application main navigation bar component
+ */
 export class NSNavbar extends React.Component {
 
     static propTypes = {
@@ -15,6 +18,11 @@ export class NSNavbar extends React.Component {
         sectionIcon: PropTypes.node
     }
 
+    /**
+     * Render the navigation bar
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const sectionName = this.props.sectionName;
         const sectionIcon = this.props.sectionIcon;

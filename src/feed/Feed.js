@@ -7,6 +7,9 @@ import {Col, Container, Row} from "react-bootstrap";
 import {NewViewer} from "../newViewer/NewViewer";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";
 
+/**
+ * News main feed component
+ */
 export class Feed extends React.Component {
 
     news = [{
@@ -81,14 +84,30 @@ export class Feed extends React.Component {
         selectedNew: this.news[0]
     };
 
+    /**
+     * Find the data of the new identified by the given title
+     *
+     * @param newTitle Title of the new to find
+     * @returns {*} Found new data
+     */
     findNewByTitle = newTitle => {
         return this.news.find(newData => newData.title === newTitle);
     };
 
+    /**
+     * Update the selected new data
+     *
+     * @param newTitle Title of the selected new
+     */
     onSelectNew = newTitle => {
         this.setState({selectedNew: this.findNewByTitle(newTitle)});
     };
 
+    /**
+     * Render the feed component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         return <Container className="Feed">
             <Row>

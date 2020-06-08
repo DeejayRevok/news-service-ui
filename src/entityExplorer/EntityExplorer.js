@@ -10,8 +10,16 @@ import {NewsModal} from "../newsListModal/NewsModal";
 import {EntityTypesChart} from "./EntityTypesChart";
 import {ReactNode} from "react";
 
+/**
+ * Named entities explorer
+ */
 export class EntityExplorer extends React.Component {
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props: object) {
         super(props);
         this.onSelectEntity = this.onSelectEntity.bind(this);
@@ -29,6 +37,9 @@ export class EntityExplorer extends React.Component {
         modalLabel: null
     };
 
+    /**
+     * Update the initial entity type from the URI after the component mount
+     */
     componentDidMount(): void {
         const entityType = this.props.match.params.entityType;
         this.setState((state) => {
@@ -38,6 +49,13 @@ export class EntityExplorer extends React.Component {
         });
     }
 
+    /**
+     * Update the entity type from the URI after the component is updated
+     *
+     * @param prevProps Previous component properties
+     * @param prevState Previous component state
+     * @param snapshot Component snapshot
+     */
     componentDidUpdate(prevProps:object, prevState:object, snapshot): void {
         const entityType = this.props.match.params.entityType;
         if (entityType !== prevProps.match.params.entityType) {
@@ -49,6 +67,12 @@ export class EntityExplorer extends React.Component {
         }
     }
 
+    /**
+     * Set the selected entity in the state and its corresponding entity type
+     *
+     * @param entity Named entity selected
+     * @param entityType Type of the selected entity
+     */
     onSelectEntity(entity: string, entityType: string): void {
         this.setState((state) => {
             state.entityType = entityType;
@@ -57,7 +81,9 @@ export class EntityExplorer extends React.Component {
         });
     }
 
-
+    /**
+     * Close the entity news modal updating the state
+     */
     closeEntityModal(): void {
         this.setState((state) => {
             state.showEntityModal = false;
@@ -65,6 +91,11 @@ export class EntityExplorer extends React.Component {
         });
     }
 
+    /**
+     * Open the entity news modal for the given entity
+     *
+     * @param entity Entity used to get the modal news
+     */
     openEntityModal(entity: string): void {
         this.setState((state) => {
             state.showEntityModal = true;
@@ -73,6 +104,9 @@ export class EntityExplorer extends React.Component {
         });
     }
 
+    /**
+     * Close the link news modal updating the state
+     */
     closeLinkModal(): void{
         this.setState((state) => {
             state.showLinkModal = false;
@@ -80,6 +114,12 @@ export class EntityExplorer extends React.Component {
         });
     }
 
+    /**
+     * Open the link news modal for the given source and target entities
+     *
+     * @param sourceEntity Source named entity of the link
+     * @param targetEntity Target named entity of the link
+     */
     openLinkModal(sourceEntity: string, targetEntity: string): void {
         this.setState((state) => {
             state.showLinkModal = true;
@@ -88,6 +128,11 @@ export class EntityExplorer extends React.Component {
         });
     }
 
+    /**
+     * Render the entity explorer
+     *
+     * @returns {*}
+     */
     render(): ReactNode {
         return <Container className="EntityExplorer">
             <Row>

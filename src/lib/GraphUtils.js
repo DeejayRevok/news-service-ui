@@ -2,6 +2,12 @@ import {Sector} from "recharts";
 import * as React from "react";
 import {ReactNode} from "react";
 
+/**
+ * Render the active shape in the pie chart with its total percentage
+ *
+ * @param props Pie chart properties
+ * @returns {*}
+ */
 export function renderActiveShape(props: object): ReactNode {
     const RADIAN = Math.PI / 180;
     const {

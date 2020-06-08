@@ -11,6 +11,9 @@ import {NewViewModal} from "./NewViewModal";
 import {NewsModal} from "../newsListModal/NewsModal";
 import {ReactNode} from "react";
 
+/**
+ * Sentiment explorer component
+ */
 export class SentimentExplorer extends React.Component {
 
     sentimentScatterData = [
@@ -39,6 +42,11 @@ export class SentimentExplorer extends React.Component {
         selectedAggregate: ''
     }
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props) {
         super(props);
         this.onCloseNewModal = this.onCloseNewModal.bind(this);
@@ -47,6 +55,9 @@ export class SentimentExplorer extends React.Component {
         this.handleAggregateClick = this.handleAggregateClick.bind(this);
     }
 
+    /**
+     * Update the state when closing new view modal
+     */
     onCloseNewModal(): void{
         this.setState((state) =>{
             state.showNewModal = false;
@@ -54,6 +65,9 @@ export class SentimentExplorer extends React.Component {
         })
     }
 
+    /**
+     * Update the state when closing aggregate data modal
+     */
     onCloseAggregateModal(): void{
         this.setState((state) =>{
             state.showAggregateModal = false;
@@ -61,6 +75,11 @@ export class SentimentExplorer extends React.Component {
         })
     }
 
+    /**
+     * Handle scatter chart click opening the new view modal
+     *
+     * @param newTitle Title of the new to display in the modal
+     */
     handleScatterClick(newTitle: string): void{
         this.setState((state) => {
            state.showNewModal = true;
@@ -68,6 +87,11 @@ export class SentimentExplorer extends React.Component {
         });
     }
 
+    /**
+     * Handle aggregate chart data point click opening the news list modal
+     *
+     * @param aggregateTimestamp Timestamp of the aggregate data point clicked
+     */
     handleAggregateClick(aggregateTimestamp: string): void{
         this.setState((state) => {
             state.showAggregateModal = true;
@@ -76,6 +100,11 @@ export class SentimentExplorer extends React.Component {
         });
     }
 
+    /**
+     * Render the sentiment explorer component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         return <Container className="SentimentExplorer">
             <Row>

@@ -6,6 +6,9 @@ import Card from "react-bootstrap/Card";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * News list modal component
+ */
 export class NewsModal extends React.Component{
 
     static propTypes = {
@@ -42,15 +45,28 @@ export class NewsModal extends React.Component{
         },
     ]
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
     }
 
+    /**
+     * Handle the modal close notifying the parent component
+     */
     handleClose(): void{
         this.props.onCloseModal();
     }
 
+    /**
+     * Render the news list modal component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const newsList = this.news.map(newData =>
             <Card key={newData.title} style={{borderColor: 'black'}}>

@@ -3,6 +3,12 @@ import rss from './assets/rss.svg';
 import './NSApp.css';
 import {Link} from "react-router-dom";
 
+/**
+ * News service home component
+ *
+ * @returns {*}
+ * @constructor
+ */
 function NSApp(): ReactNode{
     return (
         <div className="NSApp">

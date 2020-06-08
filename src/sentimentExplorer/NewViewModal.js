@@ -4,6 +4,9 @@ import {Modal} from "react-bootstrap";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * New data viewer modal
+ */
 export class NewViewModal extends React.Component{
 
     static propTypes = {
@@ -23,15 +26,28 @@ export class NewViewModal extends React.Component{
         sentiment: 1
     }
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props){
         super(props);
         this.handleClose = this.handleClose.bind(this);
     }
 
+    /**
+     * Handle the modal close notifying the parent component
+     */
     handleClose(): void{
         this.props.onCloseModal();
     }
 
+    /**
+     * Render the new data viewer modal component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const showModal = this.props.showModal;
         return <Modal show={showModal} onHide={this.handleClose}>

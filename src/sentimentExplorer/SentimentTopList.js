@@ -5,6 +5,9 @@ import ReactTooltip from "react-tooltip";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * Sentiments top list component
+ */
 export class SentimentTopList extends React.Component{
 
     static propTypes = {
@@ -15,6 +18,11 @@ export class SentimentTopList extends React.Component{
         )
     }
 
+    /**
+     * Render the sentiment top list component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const title = this.props.title;
         const headerColor = this.props.headerColor;

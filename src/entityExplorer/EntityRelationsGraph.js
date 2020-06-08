@@ -6,6 +6,9 @@ import ForceGraph2D from 'react-force-graph-2d';
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * Named entities relations force graph
+ */
 export class EntityRelationsGraph extends React.Component {
 
     static propTypes = {
@@ -106,6 +109,11 @@ export class EntityRelationsGraph extends React.Component {
         width: null,
     };
 
+    /**
+     * Component constructor
+     *
+     * @param props Component properties
+     */
     constructor(props: object) {
         super(props);
         this.onEntityClick = this.onEntityClick.bind(this);
@@ -113,12 +121,19 @@ export class EntityRelationsGraph extends React.Component {
         this.updateDimensions = this.updateDimensions.bind(this);
     }
 
+    /**
+     * Update the svg graph container dimensions
+     */
     updateDimensions(): void{
         const height = document.getElementById('graphContainer').clientHeight;
         const width = document.getElementById('graphContainer').clientWidth;
         this.setState({height: height, width: width});
     }
 
+    /**
+     * Update the svg graph container dimensions after the component mounts and sets the listener
+     * for the window resized event
+     */
     componentDidMount(): void {
         const height = document.getElementById('graphContainer').clientHeight;
         const width = document.getElementById('graphContainer').clientWidth;
@@ -126,15 +141,31 @@ export class EntityRelationsGraph extends React.Component {
         window.addEventListener('resize', this.updateDimensions);
     }
 
+    /**
+     * Update the parent component with the selected graph node
+     *
+     * @param node Selected graph node
+     * @param event Selection event
+     */
     onEntityClick(node: object, event: object): void{
         this.props.onEntityClick(node.label);
     }
 
+    /**
+     * Update the parent component with the selected graph link
+     *
+     * @param link Selected graph link
+     * @param event Selection event
+     */
     onLinkClick(link: object, event: object): void{
         this.props.onLinkClick(link.source.label, link.target.label);
     }
 
-
+    /**
+     * Render the relations graph
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const entity = this.props.entity;
         const entityType = this.props.entityType;

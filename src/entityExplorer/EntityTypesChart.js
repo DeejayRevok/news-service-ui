@@ -7,6 +7,9 @@ import {renderActiveShape} from "../lib/GraphUtils";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * Entity types comparision pie chart
+ */
 export class EntityTypesChart extends React.Component{
 
     static propTypes = {
@@ -22,6 +25,11 @@ export class EntityTypesChart extends React.Component{
         { name: 'MONEY', value: 150 },
     ]
 
+    /**
+     * Render the comparision pie chart
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const chartCells = this.entitesData.map(entry => <Cell style={{border: '10px solid black'}} key={entry.name} fill={entities[entry.name]['color']} />)
         const activeIndex = this.entitesData.findIndex(entry => entry.name === this.props.entityType);

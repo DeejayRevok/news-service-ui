@@ -7,6 +7,9 @@ import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {ReactNode} from "react";
 
+/**
+ * New data viewer component
+ */
 export class NewViewer extends React.Component {
 
     static propTypes = {
@@ -18,7 +21,12 @@ export class NewViewer extends React.Component {
         activeTab: '#content'
     };
 
-    setActiveTab(tab): void{
+    /**
+     * Update the state with the selected tab
+     *
+     * @param tab Selected tab name
+     */
+    setActiveTab(tab: string): void{
         this.setState({activeTab: tab});
     }
 
@@ -34,6 +42,11 @@ export class NewViewer extends React.Component {
         fontSizes: [15, 40]
     };
 
+    /**
+     * Render the new data viewer component
+     *
+     * @returns {*}
+     */
     render(): ReactNode{
         const newTitle = this.props.newData.title;
         const newContent = this.props.newData.content;
