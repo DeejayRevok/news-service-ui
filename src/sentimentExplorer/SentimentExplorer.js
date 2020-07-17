@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import "./SentimentExplorer.css";
-import {NSNavbar} from "../navbar/NSNavbar";
+import NSNavbar from "../navbar/NSNavbar";
 import emotion from "../assets/emotion.svg";
 import {SentimentScatter} from "./SentimentScatter";
 import {SentimentAggregateChart} from "./SentimentAggregateChart";

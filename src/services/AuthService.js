@@ -1,20 +1,36 @@
 export class AuthService {
-    static authorize = (username, password) => {
+
+    static authorize(username, password) {
         const user = (username !== undefined) ? username : '';
         const pass = (password !== undefined) ? password : '';
-        fetch('http://localhost:8081/v1/api/auth/persist', {
+        return fetch('http://localhost:8081/v1/api/auth', {
             method: 'POST',
             body: JSON.stringify({username: user, password: pass}),
             headers:{
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
-        }).then(res => {
-            return true;
         })
-          .catch(error => {
-              console.error('Error:', error);
-              return false;
-          })
-    };
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Authorization failed');
+                }
+            });
+
+    }
+
+    static logout() {
+        return fetch('http://localhost:8081/v1/api/auth', {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Logout failed');
+                }
+            });
+
+    }
 }

@@ -3,19 +3,32 @@ import user from "../assets/user.svg";
 import feed from "../assets/feed.svg";
 import './NSNavbar.css';
 import {Link} from "react-router-dom";
-import {Dropdown} from "react-bootstrap";
+import {Button, Dropdown} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
+import {AuthService} from "../services/AuthService";
+import {withRouter} from "react-router";
 
 /**
  * Application main navigation bar component
  */
-export class NSNavbar extends React.Component {
+class NSNavbar extends React.Component {
 
     static propTypes = {
         sectionName: PropTypes.string,
         sectionIcon: PropTypes.node
+    }
+
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+    logout(){
+        AuthService.logout().then(() => {
+            this.props.history.push('/');
+        })
     }
 
     /**
@@ -45,9 +58,12 @@ export class NSNavbar extends React.Component {
                         <img style={{height: '37px', paddingLeft: '10px'}} src={user} alt="logo"/>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item href="/">
+                        <Dropdown.Item style={{padding: '0px'}}>
+                            <Button className='logoutButton'
+                                    onClick={() => this.logout()}>
                                 <FontAwesomeIcon icon={faSignOutAlt} />
                                 Sign Out
+                            </Button>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
@@ -55,3 +71,5 @@ export class NSNavbar extends React.Component {
         </div>;
     }
 }
+
+export default withRouter(NSNavbar);

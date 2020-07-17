@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import './Login.css';
 import {AuthService} from "../services/AuthService";
 
@@ -12,30 +12,53 @@ export class Login extends React.Component {
         super(props);
         this.state = {
             email: '',
-            pass: ''
+            pass: '',
+            authError: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setEmail = this.setEmail.bind(this);
         this.setPass = this.setPass.bind(this);
+        this.showAuthError = this.showAuthError.bind(this);
+        this.hideAuthError = this.hideAuthError.bind(this);
     }
 
-    setEmail(email){
+    setEmail(email) {
         this.setState((state) => {
             state.email = email;
             return state;
         });
     }
 
-    setPass(pass){
+    setPass(pass) {
         this.setState((state) => {
             state.pass = pass;
             return state;
         });
     }
 
+    hideAuthError() {
+        this.setState((state) => {
+            state.authError = false;
+            return state;
+        });
+    }
+
+    showAuthError() {
+        this.setState((state) => {
+            state.authError = true;
+            return state;
+        });
+    }
+
     handleSubmit(event) {
-        const authorized = AuthService.authorize(this.state.email, this.state.pass);
-        console.log('Authorized' + authorized)
+        event.preventDefault();
+        AuthService.authorize(this.state.email, this.state.pass).then(res => {
+            console.log('Success authorization');
+            this.props.history.push('/feed');
+        }).catch(error => {
+            console.log('Authorization error');
+            this.showAuthError();
+        });
     }
 
     /**
@@ -56,7 +79,7 @@ export class Login extends React.Component {
                             <Form.Control
                                 type="email"
                                 placeholder="Enter email"
-                                onChange={({ target: { value } }) => this.setEmail(value)}
+                                onChange={({target: {value}}) => this.setEmail(value)}
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
@@ -68,12 +91,13 @@ export class Login extends React.Component {
                             <Form.Control
                                 type="password"
                                 placeholder="Password"
-                                onChange={({ target: { value } }) => this.setPass(value)}
+                                onChange={({target: {value}}) => this.setPass(value)}
                             />
                         </Form.Group>
-                        <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Remember me"/>
-                        </Form.Group>
+                        <Alert show={this.state.authError} variant='danger' onClose={() => this.hideAuthError()}
+                               dismissible>
+                            Wrong username or password!
+                        </Alert>
                         <div style={{display: 'flex'}}>
                             <Button variant="primary" type="submit" style={{width: '100%'}}>
                                 Submit

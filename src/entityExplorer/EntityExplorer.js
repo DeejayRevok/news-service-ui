@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Col, Container, Row} from "react-bootstrap";
-import {NSNavbar} from "../navbar/NSNavbar";
+import NSNavbar from "../navbar/NSNavbar";
 import graph from "../assets/molecule.svg";
 import "./EntityExplorer.css";
 import {EntityTypeViewer} from "../entityTypeViewer/EntityTypeViewer";

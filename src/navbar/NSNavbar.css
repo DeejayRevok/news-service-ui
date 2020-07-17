@@ -14,3 +14,16 @@
     background-color: transparent !important;
     border-color: transparent !important;
 }
+
+.logoutButton{
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: black !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.logoutButton:hover{
+    background-color: silver !important;
+}
