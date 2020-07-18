@@ -52,6 +52,7 @@ export class NewsContainer extends React.Component<React.Component.propTypes, St
         this.setState((state) => {
             if (state.news.find((nw) => nw.title === EMPTY_NEW.title) !== undefined) {
                 state.news.shift();
+                this.props.onSelectNew(newData);
             }
            state.news.push(newData);
            return state;

@@ -16,13 +16,21 @@ export class Feed extends React.Component {
         selectedNew: EMPTY_NEW
     };
 
+    constructor(props) {
+        super(props);
+        this.onSelectNew = this.onSelectNew.bind(this);
+    }
+
     /**
      * Update the selected new data
      *
      * @param newData Data of the selected new
      */
     onSelectNew = newData => {
-        this.setState({selectedNew: newData});
+        this.setState((state) => {
+            state.selectedNew = newData;
+            return state;
+        });
     };
 
     /**
@@ -30,7 +38,7 @@ export class Feed extends React.Component {
      *
      * @returns {*}
      */
-    render(): ReactNode{
+    render(): ReactNode {
         return <Container className="Feed">
             <Row>
                 <Col style={{paddingLeft: 0, paddingRight: 0}}>
