@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import NSNavbar from "../navbar/NSNavbar";
@@ -8,19 +10,26 @@ import {EntityList} from "./EntityList";
 import {EntityRelationsGraph} from "./EntityRelationsGraph";
 import {NewsModal} from "../newsListModal/NewsModal";
 import {EntityTypesChart} from "./EntityTypesChart";
-import {ReactNode} from "react";
+
+type State = {
+    entityType: Object,
+    entity: Object,
+    showEntityModal: boolean,
+    showLinkModal: boolean,
+    modalLabel: string
+}
 
 /**
  * Named entities explorer
  */
-export class EntityExplorer extends React.Component {
+export class EntityExplorer extends React.Component<React.Component.propTypes, State> {
 
     /**
      * Component constructor
      *
      * @param props Component properties
      */
-    constructor(props: object) {
+    constructor(props: Object) {
         super(props);
         this.onSelectEntity = this.onSelectEntity.bind(this);
         this.closeEntityModal = this.closeEntityModal.bind(this);
@@ -29,12 +38,12 @@ export class EntityExplorer extends React.Component {
         this.closeLinkModal = this.closeLinkModal.bind(this);
     }
 
-    state = {
+    state: State = {
         entityType: null,
         entity: null,
         showEntityModal: false,
         showLinkModal: false,
-        modalLabel: null
+        modalLabel: ''
     };
 
     /**
@@ -56,7 +65,7 @@ export class EntityExplorer extends React.Component {
      * @param prevState Previous component state
      * @param snapshot Component snapshot
      */
-    componentDidUpdate(prevProps:object, prevState:object, snapshot): void {
+    componentDidUpdate(prevProps:Object, prevState:Object, snapshot: any): void {
         const entityType = this.props.match.params.entityType;
         if (entityType !== prevProps.match.params.entityType) {
             this.setState((state) => {
@@ -73,7 +82,7 @@ export class EntityExplorer extends React.Component {
      * @param entity Named entity selected
      * @param entityType Type of the selected entity
      */
-    onSelectEntity(entity: string, entityType: string): void {
+    onSelectEntity = (entity: string, entityType: string): void => {
         this.setState((state) => {
             state.entityType = entityType;
             state.entity = entity;
@@ -84,7 +93,7 @@ export class EntityExplorer extends React.Component {
     /**
      * Close the entity news modal updating the state
      */
-    closeEntityModal(): void {
+    closeEntityModal = (): void => {
         this.setState((state) => {
             state.showEntityModal = false;
             return state;
@@ -96,7 +105,7 @@ export class EntityExplorer extends React.Component {
      *
      * @param entity Entity used to get the modal news
      */
-    openEntityModal(entity: string): void {
+    openEntityModal = (entity: string): void => {
         this.setState((state) => {
             state.showEntityModal = true;
             state.modalLabel = entity;
@@ -107,7 +116,7 @@ export class EntityExplorer extends React.Component {
     /**
      * Close the link news modal updating the state
      */
-    closeLinkModal(): void{
+    closeLinkModal = (): void => {
         this.setState((state) => {
             state.showLinkModal = false;
             return state;
@@ -120,7 +129,7 @@ export class EntityExplorer extends React.Component {
      * @param sourceEntity Source named entity of the link
      * @param targetEntity Target named entity of the link
      */
-    openLinkModal(sourceEntity: string, targetEntity: string): void {
+    openLinkModal = (sourceEntity: string, targetEntity: string): void => {
         this.setState((state) => {
             state.showLinkModal = true;
             state.modalLabel = sourceEntity + '-' + targetEntity;
@@ -133,7 +142,7 @@ export class EntityExplorer extends React.Component {
      *
      * @returns {*}
      */
-    render(): ReactNode {
+    render() {
         return <Container className="EntityExplorer">
             <Row>
                 <Col style={{paddingLeft: 0, paddingRight: 0}}>
