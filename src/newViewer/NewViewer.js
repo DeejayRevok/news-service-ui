@@ -26,7 +26,7 @@ export class NewViewer extends React.Component {
      *
      * @param tab Selected tab name
      */
-    setActiveTab(tab: string): void{
+    setActiveTab(tab: string): void {
         this.setState({activeTab: tab});
     }
 
@@ -47,7 +47,7 @@ export class NewViewer extends React.Component {
      *
      * @returns {*}
      */
-    render(): ReactNode{
+    render(): ReactNode {
         const newTitle = this.props.newData.title;
         const newContent = this.props.newData.content;
         const newEntities = this.props.newData.entities;

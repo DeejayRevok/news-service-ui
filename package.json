@@ -60,6 +60,7 @@
     "@fortawesome/free-solid-svg-icons": "5.13.0",
     "@fortawesome/react-fontawesome": "0.1.10",
     "flow-remove-types": "2.129.0",
-    "flow-bin": "0.129.0"
+    "flow-bin": "0.129.0",
+    "@stomp/stompjs": "5.4.4"
   }
 }
