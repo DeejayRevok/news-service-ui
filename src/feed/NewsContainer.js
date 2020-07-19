@@ -4,8 +4,10 @@ import {New} from "./New";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import "./NewsContainer.css";
 import PropTypes from 'prop-types';
-import {ReactNode} from "react";
+import ReactNode from "react";
 import {NewsStreamService} from "../services/NewsStreamService";
+import {NewsGraphQLService} from "../services/NewsGraphQLService";
+import {withRouter} from "react-router";
 
 export const EMPTY_NEW = {
     title: "There are no news available yet",
@@ -22,7 +24,7 @@ type State = {
 /**
  * New data container component
  */
-export class NewsContainer extends React.Component<React.Component.propTypes, State> {
+class NewsContainer extends React.Component<React.Component.propTypes, State> {
 
     static propTypes = {
         news: PropTypes.arrayOf(
@@ -37,15 +39,38 @@ export class NewsContainer extends React.Component<React.Component.propTypes, St
     constructor(props) {
         super(props);
         this.receivedNew = this.receivedNew.bind(this);
+        this.newsGQLService = new NewsGraphQLService('http://localhost:8080/graphql');
     }
 
     componentDidMount(): void {
-        NewsStreamService.subscribe("ws://127.0.0.1:15674/ws", "guest", "guest", this.receivedNew);
-        this.setState((state) => {
-           state.news.push(EMPTY_NEW);
-           return state;
+        this.newsGQLService.getNews().then(response => {
+            const newsList = response.data.news;
+            this.setState((state) => {
+                if(newsList.length <= 0){
+                    state.news.push(EMPTY_NEW);
+                    this.props.onSelectNew(EMPTY_NEW);
+                } else{
+                    state.news = Object.assign([], newsList);
+                    this.props.onSelectNew(newsList[0]);
+                }
+                NewsStreamService.subscribe("ws://127.0.0.1:15674/ws", "guest", "guest", this.receivedNew);
+                return state;
+            });
+        }).catch(error => {
+            if(error.graphQLErrors.length > 0){
+                error.graphQLErrors.forEach((errorData) => {
+                    console.log('GraphQL error: '+errorData.error);
+                    if(errorData.error === 'HTTPUnauthorized'){
+                        this.props.history.push('/login');
+                    }
+                });
+            } else if(error.networkError !== undefined && error.networkError.response.status === 401){
+                this.props.history.push('/login');
+            }
         });
     }
+
+
 
     receivedNew = (newData: Object) => {
         console.log('Received new '+newData.title);
@@ -54,7 +79,7 @@ export class NewsContainer extends React.Component<React.Component.propTypes, St
                 state.news.shift();
                 this.props.onSelectNew(newData);
             }
-           state.news.push(newData);
+           state.news.unshift(newData);
            return state;
         });
     }
@@ -112,3 +137,5 @@ export class NewsContainer extends React.Component<React.Component.propTypes, St
     }
 
 }
+
+export default withRouter(NewsContainer);

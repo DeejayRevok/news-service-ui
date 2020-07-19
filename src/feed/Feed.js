@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import './Feed.css';
-import {EMPTY_NEW, NewsContainer} from "./NewsContainer";
+import {EMPTY_NEW} from "./NewsContainer";
+import NewsContainer from "./NewsContainer";
 import feed from "../assets/feed.svg";
 import {Col, Container, Row} from "react-bootstrap";
 import {NewViewer} from "../newViewer/NewViewer";
